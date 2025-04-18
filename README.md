@@ -1,4 +1,15 @@
-# ewpe-smart-mqtt
+# Falcosoft:
+Modified to be used a portable way as much as possible (nodejs still needs to be installed) with the included local Client/Server combo GreeControl.exe.
+
+This way no HomeAssistant, Mosquito MQTT server etc. need to be installed.<br/>
+Also added new protocol support used by new devices (from firmware V3.x ?) as well as Humidity sensor and local timer support.  
+
+Tested with Sinclair Marvin SIH-12BIM (firmware V3.20) and Sinclair ASH-12BIV  (firmware V1.21) 
+
+![GreeControl](https://github.com/user-attachments/assets/1d6f1e89-c77c-4fe9-85b5-8f8d7051ed00)
+
+
+# Original: ewpe-smart-mqtt
 MQTT bridge for EWPE Smart powered devices which can be controled via WiFi using [EWPE Smart app](https://play.google.com/store/apps/details?id=com.gree.ewpesmart)
 
 This project became possible thanks to great work of reverse engineering the original app protocol in [gree-remote](https://github.com/tomikaa87/gree-remote) project
