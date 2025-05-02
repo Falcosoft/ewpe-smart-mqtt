@@ -64,11 +64,11 @@ class Connection extends EventEmitter {
                 `Scanning network ${networkAddress} for available devices...`
             );
             this.socket.send(message, 0, message.length, 7000, networkAddress, (err) => {
-							if(err) 
+              if(err) 
                             {
-                                logger.error(err.message);							    
+                                logger.error(err.message); 
                             }
-					});
+          });
         });
     }
 

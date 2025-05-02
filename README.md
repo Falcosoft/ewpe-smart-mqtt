@@ -1,8 +1,9 @@
 # Falcosoft:
-Modified to be used a portable way as much as possible (nodejs still needs to be installed) with the included local Client/Server combo GreeControl.exe.
+Modified to be used a portable way as much as possible with the included local Client/Server combo GreeControl.exe.
+A Windows 7 compatible Node.js version (node.exe 14.16.1.0) is also included for maximum portability.
 
-This way no HomeAssistant, Mosquito MQTT server etc. need to be installed.<br/>
-Also added new protocol support used by new devices (from firmware V3.x ?) as well as Humidity sensor and local timer support.  
+This way no HomeAssistant, Mosquito MQTT server, Node.js etc. need to be installed.<br/>
+Also added new protocol support used by new devices (from firmware V2.x ?) as well as Humidity sensor and local timer support.  
 
 Tested with Sinclair Marvin SIH-12BIM (firmware V3.20) and Sinclair ASH-12BIV  (firmware V1.21) 
 

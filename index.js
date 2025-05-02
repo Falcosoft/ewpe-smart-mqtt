@@ -6,11 +6,12 @@ const DeviceManager = require('./app/device_manager');
 
 const networkAddress = process.env.NETWORK || '192.168.0.255';
 const mqttServerAddress = process.env.MQTT_SERVER || 'mqtt://127.0.0.1';
+const mqttServerport = process.env.MQTT_PORT || 1883;
 const mqttBaseTopic = process.env.MQTT_BASE_TOPIC || 'ewpe-smart';
 const pollInterval = process.env.DEVICE_POLL_INTERVAL || 5000;
 const mqttServerUsername = process.env.MQTT_USERNAME || 'ewpe-bridge';
 const mqttServerpassword = process.env.MQTT_PASSWORD || '';
-const mqttServerport = process.env.MQTT_PORT || 1883;
+const encryptionVersion = process.env.ENCRYPT_VER || 'auto';
 
 
 const customLogFormat = logger.format.printf(info => {
@@ -42,7 +43,7 @@ mqttClient.on('connect', () => {
     logger.info('Successfully connected to MQTT server');
 
     const deviceRegex = new RegExp(`^${mqttBaseTopic}\/([0-9a-h]{12})\/(.*)$`, 'i');
-    const deviceManager = new DeviceManager(networkAddress, pollInterval);
+    const deviceManager = new DeviceManager(networkAddress, encryptionVersion);
 
     const getDeviceStatus = async (deviceId) => {
         const deviceStatus = await deviceManager.getDeviceStatus(deviceId);

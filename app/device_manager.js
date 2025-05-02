@@ -30,10 +30,11 @@ const statusKeys = [
 ];
 
 class DeviceManager extends EventEmitter {
-    constructor(networkAddress) {
+    constructor(networkAddress, encryptionVersion) {
         super();
         this.connection = new Connection(networkAddress);
         this.devices = {};
+        this.encryptionVersion = encryptionVersion;
 
         this.connection.on("dev", this._registerDevice.bind(this));
     }
@@ -42,7 +43,12 @@ class DeviceManager extends EventEmitter {
         const deviceId = message.cid || message.mac;
         
         //This detection is not bullet proof...
-        let useV2Encryption = message.ver.startsWith("V3");
+        let useV2Encryption = false;
+        
+        if (this.encryptionVersion == 'auto')
+           useV2Encryption = message.ver.startsWith("V2") || message.ver.startsWith("V3");
+        else if (this.encryptionVersion == 'version2')	
+           useV2Encryption = true;
         
         logger.info(
             `New device found: ${message.model} (mac: ${deviceId}), binding...`
@@ -116,7 +122,7 @@ class DeviceManager extends EventEmitter {
             {}
         );
 
-        if ("TemSen" in deviceStatus && deviceStatus["TemSen"] != 0) {
+        if ("TemSen" in deviceStatus) {
             deviceStatus["TemSen"] += TEMPERATURE_SENSOR_OFFSET;
         }
 
